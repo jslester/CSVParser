@@ -1,0 +1,465 @@
+@font-face {
+	font-family: 'Quicksand';
+	font-style: normal;
+	font-weight: 400;
+	src: url("font/quicksand.eot");
+	src: local("Quicksand Regular"), local("Quicksand-Regular"), url("font/quicksand.eot?#iefix") format("embedded-opentype"), url("font/quicksand.woff2") format("woff2"), url("font/quicksand.woff") format("woff"), url("font/quicksand.ttf") format("truetype"), url("font/quicksand.svg#Quicksand") format("svg");
+}
+@font-face {
+    font-family: 'fontello';
+    src: url("font/fontello.eot?29715915");
+    src: url("font/fontello.eot?29715915#iefix") format("embedded-opentype"), url("font/fontello.woff?29715915") format("woff"), url("font/fontello.ttf?29715915") format("truetype"), url("font/fontello.svg?29715915#fontello") format("svg");
+    font-weight: normal;
+    font-style: normal;
+}
+
+body {
+	margin: 0;
+	font-family: 'Source Sans Pro', sans-serif !important;
+	font-size: 18px;
+	color: #5a5959;
+    background-color: #F5F5F5;
+}
+
+* {
+	box-sizing: border-box;
+}
+*::selection {
+	background: #FF5656;
+	color: #fff;
+}
+*::-moz-selection {
+	background: #FF5656;
+	color: #fff;
+}
+
+img, form {
+    width: 100%;
+}
+
+h1 {
+    margin: 0.67em;
+    font-weight: 400;
+}
+a {
+    text-decoration: none;
+    cursor: pointer;
+    color: black;
+    -webkit-transition: all 0.1s ease-in-out;
+    -moz-transition: all 0.1s ease-in-out;
+    -ms-transition: all 0.1s ease-in-out;
+    -o-transition: all 0.1s ease-in-out;
+    transition: all 0.1s ease-in-out;
+    color: #FF5656 !important;
+    /* text-decoration: none; */
+
+}
+.url a {
+    border-bottom: 1px solid black;
+}
+a:hover, .a-hovering {
+    color: red;
+}
+.url a:hover {
+    border-bottom: 1px solid black;
+}
+
+/*
+    Head
+*/
+.picPadding{
+	padding-right: 0px !important;
+    padding-left: 0px !important; 	
+	
+}
+.head {
+    min-height: 61.8vh;
+    background-color: #fff;
+
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-align: center;
+    -webkit-align-items: center;
+    -webkit-box-align: center;
+    align-items: center;
+}
+
+
+
+.nav {
+    width: 100%;
+    padding-top: 2vh;
+    text-align: center;
+    box-sizing: initial;
+    position: absolute;
+    top: 0;
+	
+}
+.nav a {
+    display: inline-block;
+    height: 20px;
+    margin: 0 15px;
+    vertical-align: middle;
+    font-size: 16px;
+    text-transform: uppercase;
+}
+
+
+.hi {
+    width: 100%;
+    text-align: center;
+}
+
+/*
+    Body
+*/
+
+.body {
+    background-color: #F5F5F5;
+}
+
+.section {
+	padding: 2vh 19.1%;
+	text-align: center;
+}
+
+
+.project {
+    margin: 4vh 0;
+	background-color: #fff;
+	box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 1px 5px 0 rgba(0, 0, 0, 0.12), 0 3px 1px -2px rgba(0, 0, 0, 0.2);
+    overflow: hidden;
+    border-radius: 4px;
+    text-align: left;
+}
+
+.csvPadding {
+    margin: 0vh 50% 0vh 2%;
+	background-color: #F5F5F5;
+	box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 1px 5px 0 rgba(0, 0, 0, 0.12), 0 3px 1px -2px rgba(0, 0, 0, 0.2);
+    overflow: hidden;
+    border-radius: 4px;
+    text-align: left;
+}
+.left {
+    display: inline-block;
+    display: flex;
+    float: left;
+    align-items: center;
+}
+.right {
+    display: inline-block;
+    padding: 18px;
+    float: left;
+    text-align: left;
+}
+hr {
+  border: 0;
+  clear:both;
+  display:block;
+  width: 100%;               
+  height: 1px;
+}
+
+.text {
+    margin: 0;
+    line-height: 1.5;
+}
+.text:not(:last-child) {
+    padding-bottom: 9px;
+}
+
+.portfolio .left {
+    width: 61.8%;
+}
+.portfolio .right {
+    width: 38.2%;
+}
+
+.experience .left {
+    width: 23.61%;
+    padding: 18px;
+}
+.experience .right {
+    width: 76.39%;
+}
+.experience .project {
+    padding: 18px;
+}
+
+div.hidden
+{
+    visibility: hidden;
+}
+
+.contact .project {
+    background-color: transparent;
+    box-shadow: none;
+}
+.contact .left {
+    width: 61.8%;
+    padding: 18px;
+    text-align: left;
+}
+.contact .right {
+    width: 38.2%;
+    padding: 18px;
+}
+
+.image {
+    display: block;
+    margin: 0 auto;
+}
+.image.partial {
+    width: 23.61%;
+    margin: 0 18px 9px 0;
+    float: left;
+}
+
+.container-container {
+    width: 100%;
+    text-align: center;
+}
+
+#about a, #submitted a, #linkedIn a {
+	border-bottom: 1px solid #5a5959;
+}
+
+#about a:hover, #about .a-hovering, #submitted a:hover, #linkedIn a:hover {
+	border-bottom: 0;
+}
+
+.image-container {
+	position: relative;
+    width: 60%;
+    float: left;
+}
+.website-image {
+	position: relative;
+}
+.website-image img {
+	display: block;
+	width: 100%;
+}
+.website-info {
+	position: absolute;
+	top: 0;
+	left: 0;
+	z-index: 1;
+	visibility: hidden;
+	opacity: 0;
+	width: 100%;
+	height: 100%;
+	background-color: rgba(75, 75, 75, 0.5);
+	text-align: center;
+	-webkit-transition: visibility 0.15s, opacity 0.15s ease-out;
+	-moz-transition: visibility 0.15s, opacity 0.15s ease-out;
+	-ms-transition: visibility 0.15s, opacity 0.15s ease-out;
+	-o-transition: visibility 0.15s, opacity 0.15s ease-out;
+	transition: visibility 0.15s, opacity 0.15s ease-out;
+}
+.website-info:before {
+	display: inline-block;
+	vertical-align: middle;
+	margin-right: -0.25em;
+	height: 100%;
+	content: '';
+}
+.centered {
+	display: inline-block;
+	vertical-align: middle;
+    width: 61.8%;
+}
+.website-link {
+	position: relative;
+	display: inline-block;
+	width: 100%;
+	margin: 6px 0;
+	padding: 12px;
+	border-radius: 4px;
+	box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 1px 5px 0 rgba(0, 0, 0, 0.12), 0 3px 1px -2px rgba(0, 0, 0, 0.2);
+	background-color: #fff;
+	color: #5a5959;
+	font-size: 16px;
+	text-align: center;
+}
+.website-link > .icon {
+	margin-right: 13px;
+	font-size: 19px;
+}
+.website-link > .icon-export {
+	margin-right: 8px;
+}
+.image-container:hover .website-info, .image-container.hovering .website-info {
+	visibility: visible;
+	opacity: 1;
+}
+
+.container {
+	display: inline-block;
+	text-align: left;
+}
+
+.contact-link {
+	display: inline-block;
+}
+
+.input {
+	width: 100%;
+	padding: 10px;
+	margin: 5px 0 10px;
+	font-size: 18px;
+	outline: 0;
+	border: 1px #bbb solid;
+	border-radius: 4px;
+	background-color: #fff;
+	color: #5a5959;
+	font-family: 'Quicksand', sans-serif;
+}
+
+*::-webkit-input-placeholder {
+	color: #bbb;
+}
+
+*:-moz-placeholder {
+	color: #bbb;
+}
+
+*::-moz-placeholder {
+	color: #bbb;
+}
+
+*:-ms-input-placeholder {
+	color: #bbb;
+}
+
+.button {
+	margin-bottom: 2px;
+	box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.1);
+	-webkit-appearance: none;
+	-webkit-transition: box-shadow 0.1s ease;
+	-moz-transition: box-shadow 0.1s ease;
+	-ms-transition: box-shadow 0.1s ease;
+	-o-transition: box-shadow 0.1s ease;
+	transition: box-shadow 0.1s ease;
+}
+
+.button:hover {
+	box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.15), 0 1px 5px 0 rgba(0, 0, 0, 0.07), 0 3px 1px -2px rgba(0, 0, 0, 0.09);
+}
+
+.button:active {
+	box-shadow: none;
+	margin-bottom: 0;
+	margin-top: 7px;
+}
+.projectPadding{
+	padding-left:15px !important;
+	padding-bottom:15px;
+}
+#send {
+	margin-top: 0;
+}
+input[type=checkbox] {
+/*Your CSS Goes Here*/
+	padding-left:15px !important;
+	padding-bottom:15px;
+}
+
+#send:active {
+	margin-top: 2px;
+}
+
+#no-name-no-email, #no-name, #no-email, #bad-email {
+	display: none;
+}
+
+.yesno {
+	display: none;
+	width: 48%;
+}
+
+#send-no {
+	float: left;
+}
+
+#send-yes {
+	float: right;
+}
+
+/*
+    Foot
+*/
+
+.foot {
+    min-height: 38.2vh;
+    background-color: #333;
+
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-align: center;
+    -webkit-align-items: center;
+    -webkit-box-align: center;
+    align-items: center;
+}
+
+.links {
+    width: 100%;
+    text-align: center;
+}
+.links .icon {
+    font-size: 36px;
+}
+
+.icon {
+	display: inline-block;
+	width: 1em;
+	margin-right: .2em;
+	font-family: "fontello";
+	font-style: normal;
+	font-weight: normal;
+	speak: none;
+	text-decoration: inherit;
+	text-align: center;
+	font-variant: normal;
+	text-transform: none;
+	line-height: 1em;
+	font-size: 27px;
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+}
+
+#submitted {
+	display: none;
+	margin-top: -15px;
+	padding: 0 4%;
+}
+
+#submitted p {
+	padding: 0;
+	font-size: 22px;
+}
+
+.big {
+	font-size: 36px;
+}
+
+.green {
+	color: #00f000;
+}
+
+.links a {
+	display: inline-block;
+	padding: 0 5px;
+	color: #ccc;
+}
+
+.links a:hover, .links .a-hovering {
+	color: #fff;
+}
+
+

@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <title>
+            Jonathan Lester
+        </title>
+        <link rel="stylesheet" href="style.css">
+        <link rel="apple-touch-icon" sizes="180x180" href="icon/apple-touch-icon.png">
+        <link rel="icon" type="image/png" sizes="32x32" href="icon/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="icon/favicon-16x16.png">
+        <link rel="mask-icon" href="/icon/safari-pinned-tab.svg" color="#61cae9">
+        <link rel="shortcut icon" href="icon/favicon.ico">
+        <meta name="msapplication-config" content="/icon/browserconfig.xml">
+        <meta name="theme-color" content="#ffffff">
+        <meta name="description" content="Jonathan Lester.">
+        <meta name="viewport" content="width=device-width,initial-scale=1.0">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+        <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro" rel="stylesheet">
+    </head>
+    <body>
+        <div class="row">			
+            <div class="col-xs-12 col-xl-12 hi" style="background-color:white">
+                <img src="Logo.PNG" style="width:128px;height:128px;">
+            </div>
+		</div>
+		<div class="row">
+			<div class="col-xs-8 col-xl-8">
+				<div style="font-size:20px; left: 15px; padding-bottom:10px;" class="col-xs-12 col-xl-12" >
+					<p >This tool is used to convert the first one or two columns of a CSV to a list of select options. Use the first checkbox if your data is broken up into two columns, and the second checkbox to use integers as values. Otherwise, the first column will be used for both value and innertext.</p>
+				</div>
+			</div>
+			<div class="col-xs-4 col-xl-4">
+				<div style="left: 15px; padding-bottom:10px" class="col-xs-12 col-xl-12">
+					<input type="checkbox" id="columnNumber" > My table is in two columns<br>
+				</div>
+				<div style="left: 15px; padding-bottom:10px" class="col-xs-12 col-xl-12">
+					<input type="checkbox" id="useNumerics" > Use numeric values<br>
+				</div>
+				<div style="left: 15px; padding-bottom:30px" class="col-xs-12 col-xl-12" id="inputs" class="clearfix">
+					<input  type="file" id="files" name="files[]" multiple />
+				</div>
+				</br>
+				
+				<div class=" col-xs-12 col-xl-12" style="left: 15px; padding-bottom:15px">
+					<button  id="button">Launch program</button>
+				</div>			
+			</div>
+		</div>
+		<hr />
+        <span id="spanID" style=" padding-left: 15px; display:none; padding-bottom:15px">Example Select Option <select id="selectID"></select></span>
+		<div id="selectOptionID" style="font-size:20px; display:none; padding-left: 15px;">Generated select option list</div>
+		<div style="padding-bottom: 15px;">
+			<div class="csvPadding" id="divID"></div>
+		</div>	
+        <div class="foot row">
+            <div class="">
+                <div class="container">
+                    <p class="col-xl-12 col-xs-12">
+                        <a href="https://github.com/jslester" target="_blank">
+                        <i class="icon icon-github">&#xf300;</i> Github
+                        </a>
+                    </p>
+                    <p class="col-xl-12 col-xs-12">
+                        <a href="https://www.linkedin.com/in/jonathan-lester-b0b89b175/" target="_blank">
+                        <i class="icon icon-linkedin">&#xf318;</i> LinkedIn
+                        </a>
+                    </p>
+                    <p class="col-xl-12 col-xs-12" style="color:#FF5656;" >Created by Jonathan Lester</p>
+                </div>
+            </div>
+        </div>
+        <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
+        <script src="jquery-csv.js"></script>
+        <script>
+  
+	 $(document).ready(function() {
+		 $("#button").on('click', handleFileSelect);
+	});
+
+
+		function isAPIAvailable() {
+		  // Check for the various File API support.
+		  if (window.File && window.FileReader && window.FileList && window.Blob) {
+			// Great success! All the File APIs are supported.
+			return true;
+		  } else {
+			// source: File API availability - http://caniuse.com/#feat=fileapi
+			// source: <output> availability - http://html5doctor.com/the-output-element/
+			document.writeln('The HTML5 APIs used in this form are only available in the following browsers:<br />');
+			// 6.0 File API & 13.0 <output>
+			document.writeln(' - Google Chrome: 13.0 or later<br />');
+			// 3.6 File API & 6.0 <output>
+			document.writeln(' - Mozilla Firefox: 6.0 or later<br />');
+			// 10.0 File API & 10.0 <output>
+			document.writeln(' - Internet Explorer: Not supported (partial support expected in 10.0)<br />');
+			// ? File API & 5.1 <output>
+			document.writeln(' - Safari: Not supported<br />');
+			// ? File API & 9.2 <output>
+			document.writeln(' - Opera: Not supported');
+			return false;
+		  }
+		}
+
+		function handleFileSelect() {
+		  //var files = evt.target.files; // FileList object
+		  var x = document.getElementById('files');
+		  var file = x.files[0];
+
+		  // read the file metadata
+		  var output = ''
+			  output += '<span style="font-weight:bold;">' + escape(file.name) + '</span><br />\n';
+			  output += ' - FileType: ' + (file.type || 'n/a') + '<br />\n';
+			  output += ' - FileSize: ' + file.size + ' bytes<br />\n';
+			  output += ' - LastModified: ' + (file.lastModifiedDate ? file.lastModifiedDate.toLocaleDateString() : 'n/a') + '<br />\n';
+		
+		
+			printTable(file);
+		
+		  // post the results
+		  $('#list').append(output);
+		}
+
+		function printTable(file) {
+		  var reader = new FileReader();
+		  var div = document.getElementById('divID');
+		  var multipleColumn = document.getElementById('columnNumber').checked;
+		  var useNumerics = document.getElementById('useNumerics').checked;
+		  reader.readAsText(file);
+		  reader.onload = function(event){
+			var csv = event.target.result;
+			var data = $.csv.toArrays(csv);
+			var html = '';
+			var selectButton = document.getElementById("selectID");
+			if(!multipleColumn){
+				for(var row in data) {			
+					var string = data[row][0].split("\t");
+					var valueVar;
+					if(useNumerics){
+						valueVar = row
+					}else{
+						valueVar = string[0];
+					}
+					var opt = document.createElement('option');
+					opt.value = valueVar;
+					opt.innerHTML = string[0];
+					selectButton.appendChild(opt);
+					html +=  '<option value=' + '"'+ valueVar + '">'+ string[0] +'</option>\n';				
+					
+					
+				}
+			}else{
+				for(var row in data) {
+					console.log(data[row]);
+					//var string = data[row][0].split("\t");
+					var valueVar;			
+					const Name = data[row][0] + ' ' + data[row][1];
+					if(useNumerics){
+						valueVar = row
+					}else{
+						valueVar = Name;
+					}
+					var opt = document.createElement('option');
+					opt.value = valueVar;
+					opt.innerHTML = Name;
+					selectButton.appendChild(opt);
+					html+= '<option value=' + '"'+ valueVar+ '">'+ Name +'</option>\n';
+				}
+			}
+			document.getElementById("spanID").style.display="block";
+			document.getElementById("selectOptionID").style.display="block";
+			div.innerText +=html;
+			//$('#contents').html(html);
+		  };
+		  reader.onerror = function(){ alert('Unable to read ' + file.fileName); };
+		}
+  </script>
+</body>
+</html>
